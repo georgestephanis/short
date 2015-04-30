@@ -118,6 +118,10 @@ class Stephanis_Short {
 	}
 
 	public static function save_post( $post_id, $post ) {
+		if ( empty( $_POST['_redirect_url_nonce'] ) ) {
+			return $post_id;
+		}
+
 		if ( ! wp_verify_nonce( $_POST['_redirect_url_nonce'], '_redirect_url_nonce' ) ) {
 			return $post_id;
 		}
